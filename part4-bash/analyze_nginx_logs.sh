@@ -49,25 +49,3 @@ print $7
 | awk '{printf "%-40s %s requests\n",$2,$1}'
 
 echo
-echo "============= HTTP Status Codes ============="
-
-awk '{print $9}' "$LOGFILE" \
-| sort \
-| uniq -c \
-| sort -rn \
-| awk '{printf "HTTP %-5s %s requests\n",$2,$1}'
-
-echo
-echo "============= Top Request Methods ============="
-
-awk '{
-print $6
-}' "$LOGFILE" \
-| sed 's/"//g' \
-| sort \
-| uniq -c \
-| sort -rn \
-| awk '{printf "%-10s %s requests\n",$2,$1}'
-
-echo
-echo "Analysis Complete."
